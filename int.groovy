@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'slave-1' }
+    agent { label 'slave1' }
     
     parameters {
         choice (
