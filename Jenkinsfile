@@ -3,10 +3,10 @@ node('slave1') {
         checkout scm
     }
 
-    stage('Stop Current Services'){
-        sh 'docker-compose -p QA down --remove-orphans'
-        sh 'docker-compose -p INT down --remove-orphans'
-    }
+    // stage('Stop Current Services'){
+    //     sh 'docker-compose -p QA down --remove-orphans'
+    //     sh 'docker-compose -p INT down --remove-orphans'
+    // }
 
     stage('Build & Start Services'){
         sh 'export REDIS_PORT=6839'
