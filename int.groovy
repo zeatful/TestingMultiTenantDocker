@@ -4,12 +4,18 @@ pipeline {
     parameters {
         choice (
             name: 'ENVIRONMENT_NAME',
-            choices: ['int', 'qa', 'demo', 'stage', 'prod'],
+            choices: ['INT', 'QA', 'DEMO', 'STAGE', 'PROD'],
             description: 'Choose which environment to deploy from master'
         )
     }
 
     stages {
+        stage ('Print selected value') {
+            steps {
+                echo "ENVIRONMENT_NAME = ${params.ENVIRONMENT_NAME}"
+            }
+        }
+
         stage ('Deploy to INT') {
             when {
                 anyOf {
@@ -99,7 +105,6 @@ pipeline {
             steps {
             // Remove dangling images and networks
             sh 'docker image prune -f'
-            sh 'docker image prune -fa'
             sh 'docker network prune -f'
             }
         }
