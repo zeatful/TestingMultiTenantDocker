@@ -7,8 +7,10 @@ pipeline {
 
     stages {
         stage("Env Variables") {
-            sh "printenv"
-            echo "echo ${env.REDIS_PORT}"
+            step ('blah') {
+                sh "printenv"
+                echo "echo ${env.REDIS_PORT}"
+            }                        
         }
     }
 }
