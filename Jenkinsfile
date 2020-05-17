@@ -9,10 +9,8 @@ node('slave1') {
     // }
 
     stage('Build & Start Services'){
-        sh 'export REDIS_PORT=6839'
-        sh 'docker-compose -p QA up --force-recreate -d'
-        sh 'export REDIS_PORT=6840'
-        sh 'docker-compose -p INT up --force-recreate -d'
+        sh 'set REDIS_PORT=6839 && docker-compose -p QA up --force-recreate -d'
+        sh 'export REDIS_PORT=6840 && docker-compose -p INT up --force-recreate -d'
     }
 
     stage('Perform Docker Cleanup'){
