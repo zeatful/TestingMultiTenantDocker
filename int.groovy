@@ -10,12 +10,6 @@ pipeline {
     }
 
     stages {
-        stage ('Stop Running Services') {
-            steps {
-                sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} down --remove-orphans"
-            }
-        }
-
         stage ('Deploy to INT') {
             when {
                 anyOf {
@@ -28,6 +22,7 @@ pipeline {
             }
 
             steps {
+                sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} down --remove-orphans"
                 sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} up --force-recreate -d"
             }
         }
@@ -44,6 +39,7 @@ pipeline {
             }
 
             steps {
+                sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} down --remove-orphans"
                 sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} up --force-recreate -d"
             }
         }
@@ -60,6 +56,7 @@ pipeline {
             }
 
             steps {
+                sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} down --remove-orphans"
                 sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} up --force-recreate -d"
             }            
         }
@@ -76,6 +73,7 @@ pipeline {
             }
 
             steps {
+                sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} down --remove-orphans"
                 sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} up --force-recreate -d"
             }            
         }
@@ -92,6 +90,7 @@ pipeline {
             }
 
             steps {
+                sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} down --remove-orphans"
                 sh "docker-compose -f docker-compose.managed.yml -p ${params.ENVIRONMENT_NAME} up --force-recreate -d"
             }            
         }
