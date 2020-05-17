@@ -1,22 +1,17 @@
-node('slave1') {
+pipeline {
+    agent any
 
     environment {
-        REDIS_PORT = 6379
+        NAME = "INT"
+        REDIS_PORT = "6380"
     }
 
-    stage('Checkout'){
-        checkout scm
+    stages {
+        stage("Env Variables") {
+            steps {
+                echo "${env.REDIS_PORT}"
+                sh "docker-compose -p ${env.NAME} up -d"
+            }                        
+        }
     }
-
-    stage('print redis port'){
-        sh 'echo $REDIS_PORT'
-        // sh 'docker-compose -p QA up --force-recreate -d'
-    }
-
-    // stage('Perform Docker Cleanup'){
-    //     // Remove dangling images and networks
-    //     sh 'docker image prune -f'
-    //     sh 'docker image prune -fa'
-    //     sh 'docker network prune -f'
-    // }
 }
