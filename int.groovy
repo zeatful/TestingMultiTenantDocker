@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         NAME = "INT"
-        REDIS_PORT = "6380"
+        REDIS_PORT = "6379"
     }
 
     stages {
