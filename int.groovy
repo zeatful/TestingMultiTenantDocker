@@ -8,14 +8,15 @@ node('slave1') {
         checkout scm
     }
 
-    stage('Build & Start Services'){
-        sh 'docker-compose -p INT up --force-recreate -d'
+    stage('print redis port'){
+        sh 'echo $REDIS_PORT'
+        // sh 'docker-compose -p QA up --force-recreate -d'
     }
 
-    stage('Perform Docker Cleanup'){
-        // Remove dangling images and networks
-        sh 'docker image prune -f'
-        sh 'docker image prune -fa'
-        sh 'docker network prune -f'
-    }
+    // stage('Perform Docker Cleanup'){
+    //     // Remove dangling images and networks
+    //     sh 'docker image prune -f'
+    //     sh 'docker image prune -fa'
+    //     sh 'docker network prune -f'
+    // }
 }
