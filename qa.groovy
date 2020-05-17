@@ -4,23 +4,19 @@ node('slave1') {
         REDIS_PORT = 6380
     }
 
-    stages {
-        stage('Checkout'){
-            checkout scm
-        }
-
-        stage('print redis port'){
-            steps {
-                echo 'echo ${REDIS_PORT}'
-                // sh 'docker-compose -p QA up --force-recreate -d'
-            }
-        }
-
-        // stage('Perform Docker Cleanup'){
-        //     // Remove dangling images and networks
-        //     sh 'docker image prune -f'
-        //     sh 'docker image prune -fa'
-        //     sh 'docker network prune -f'
-        // }
+    stage('Checkout'){
+        checkout scm
     }
+
+    stage('print redis port'){
+        echo "echo ${REDIS_PORT}"
+    // sh 'docker-compose -p QA up --force-recreate -d'
+    }
+
+    // stage('Perform Docker Cleanup'){
+    //     // Remove dangling images and networks
+    //     sh 'docker image prune -f'
+    //     sh 'docker image prune -fa'
+    //     sh 'docker network prune -f'
+    // }
 }
