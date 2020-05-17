@@ -1,7 +1,7 @@
 node('slave1') {
 
     environment {
-        REDIS_PORT = 6380
+        REDIS_PORT='6380'
     }
 
     stage('Checkout'){
