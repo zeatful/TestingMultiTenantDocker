@@ -10,7 +10,7 @@ pipeline {
         stage("Env Variables") {
             steps {
                 echo "${env.REDIS_PORT}"
-                // sh "docker-compose -p ${env.NAME} up -d"
+                sh "docker-compose -p ${env.NAME} up -d"
             }                        
         }
     }
